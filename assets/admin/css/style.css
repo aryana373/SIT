@@ -1,0 +1,74 @@
+.item-gallery {
+	border: 1px solid #eee;
+	height: 260px;
+}
+
+.item-gallery .tag {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1; 
+	line-height: 1.5;        
+	max-height: 1.5;   
+}
+
+.item-gallery .thumbnail {
+		width: 100%; 
+		height: 90px; 
+		background-size: cover; 
+		background-position: center;
+		background-repeat: no-repeat; 
+}
+
+.img-container {
+	margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+	.item-gallery .thumbnail {
+		height: 170px; 
+	}
+
+	.img-container {
+        width: 100%;
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+	.item-gallery .thumbnail {
+		height: 150px; 	
+	}
+}
+
+div.img {
+	position: relative; 
+	height: 100%; 
+	width: 100%; 
+	background-size: contain; 
+	background-repeat: no-repeat; 
+	background-position: center;
+	padding: 25px;
+	background-origin: content-box;
+}
+
+div.img i{
+	font-size:32px; 
+	color: #fff; 
+	position: absolute; 
+	top: 50%;
+	background-color: rgba(0,0,0,0.2);
+	padding: 15px;
+}
+
+#modal-image .tag{
+ 	bottom: 50px; left: 0; right: 0; text-align: center; position: absolute; color: #fff;
+ 	font-size: 20px;
+}
+

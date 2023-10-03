@@ -1,0 +1,117 @@
+// Append modal as direct child of body
+$('#modal-preloader').appendTo('body');
+
+
+
+/*Data Table Option*/
+function dataTable() {
+    $(".table1").DataTable();
+    $('.table2').DataTable({
+		"paging": true,
+		"lengthChange": false,
+		"searching": false,
+		"ordering": true,
+		"info": true,
+		"autoWidth": false
+    });
+
+    $("#table1").DataTable();
+    $('#table2').DataTable({
+		"paging": true,
+		"lengthChange": false,
+		"searching": false,
+		"ordering": true,
+		"info": true,
+		"autoWidth": false
+    });
+};
+
+/*Handle tooltip hide when click*/  
+$(document).on('click', function () {
+    $(this).find('.tooltip').tooltip('hide');
+});
+
+
+/*Handle Cookies*/
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+/*Sidebar Click handle*/
+$('.sidebar-menu > li').click(function(event) {
+	$('.sidebar-menu > li').removeClass('active');
+	$(this).addClass('active');
+	$('.content-header h1').html($(this).find('a').text()+'<small>Control panel</small>');
+	if($('body').css('width')<'768px') $('a.sidebar-toggle').click();
+});
+
+
+$('#sidebar-dashboard').click(function(event) {
+	$('#main-content').html('');
+	$('#preloader').css('display','block');
+	$.get(base_url+"Admin/Dashboard", function(data) {
+		$('#preloader').css('display','none');
+		$('#main-content').html(data);
+		setCookie("sidebar", "dashboard", 0.5);
+	});
+});
+
+$('#sidebar-article').click(function(event) {
+	$('#main-content').html('');
+	$('#preloader').css('display','block');
+	$.get(base_url+"Admin/Article/select_all", function(data) {
+		$('#preloader').css('display','none');
+		$('#main-content').html(data);
+		setCookie("sidebar", "article", 0.5);
+	});
+});
+
+
+$('#sidebar-gallery').click(function(event) {
+	$('#main-content').html('');
+	$('#preloader').css('display','block');
+	$.get(base_url+"Admin/Gallery/select_all", function(data) {
+		$('#preloader').css('display','none');
+		$('#main-content').html(data);
+		setCookie("sidebar", "gallery", 0.5);
+	});
+});
+
+$('#sidebar-booking').click(function(event) {
+	$('#main-content').html('');
+	$('#preloader').css('display','block');
+	$.get(base_url+"Admin/Booking/select_all", function(data) {
+		$('#preloader').css('display','none');
+		$('#main-content').html(data);
+		setCookie("sidebar", "booking", 0.5);
+	});
+});
+
+$('#sidebar-setting').click(function(event) {
+	$('#main-content').html('');
+	$('#preloader').css('display','block');
+	$.get(base_url+"Admin/Setting/select", function(data) {
+		$('#preloader').css('display','none');
+		$('#main-content').html(data);
+		setCookie("sidebar", "setting", 0.5);
+	});
+});
